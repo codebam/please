@@ -5,6 +5,8 @@ oh please. please is a command that you can put in your ~/.local/bin
 when you give it the appropriate environment variables by putting them in
 ~/.bashrc or ~/.profile it'll just work
 
+![terminal showing creating a file using please](https://pastebin.seanbehan.ca/xbPSLDL6Vr.png)
+
 ```
 _CLOUDFLARE_API_TOKEN=
 export _CLOUDFLARE_API_TOKEN
