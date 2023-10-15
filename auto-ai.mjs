@@ -4,17 +4,13 @@ import { spawnSync } from "child_process";
 const API_TOKEN = process.env._CLOUDFLARE_API_TOKEN;
 const ACCOUNT_ID = process.env._CLOUDFLARE_ACCOUNT_ID;
 
-let system = [];
-
 const llama2 = async (prompt) => {
-	const system_map = system.map((str) => ({ role: "system", content: str }));
 	const res = await fetch(
 		`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/ai/run/@cf/meta/llama-2-7b-chat-int8`,
 		{
 			headers: { Authorization: `Bearer ${API_TOKEN}` },
 			body: JSON.stringify({
 				messages: [
-					...system_map,
 					{
 						role: "system",
 						content:
@@ -27,7 +23,6 @@ const llama2 = async (prompt) => {
 		}
 	);
 	const result = (await res.json()).result.response;
-	system.push("[INST]" + prompt + "[/INST]" + "\n" + result);
 	return result;
 };
 
