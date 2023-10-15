@@ -9,6 +9,8 @@ when you give it the appropriate environment variables by putting them in
 
 ![terminal showing creating a new git repo using please](https://pastebin.seanbehan.ca/75Qf5CmjHV.png)
 
+![terminal showing switching to workspace 2 in sway using please](https://pastebin.seanbehan.ca/kz2XY0dTza.png)
+
 ```
 _CLOUDFLARE_API_TOKEN=
 export _CLOUDFLARE_API_TOKEN
