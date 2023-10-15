@@ -1,6 +1,6 @@
 #!/home/codebam/.nvm/versions/node/v20.8.0/bin/node
 import readline from "readline";
-import { exec } from "child_process";
+import { spawn } from "child_process";
 
 const API_TOKEN = process.env._CLOUDFLARE_API_TOKEN;
 const ACCOUNT_ID = process.env._CLOUDFLARE_ACCOUNT_ID;
@@ -54,19 +54,11 @@ if (process.argv[1]) {
 	console.log(line);
 	const response = await llama2(line);
 	console.log(response);
-	find_commands(response).map((line) => {
+	find_commands(response).map(async (line) => {
 		console.log(line);
-		exec(line, (error, stdout, stderr) => {
-			if (error) {
-				console.log(`error: ${error.message}`);
-				return;
-			}
-			if (stderr) {
-				console.log(`stderr: ${stderr}`);
-				return;
-			}
-			console.log(`stdout: ${stdout}`);
-		});
+		const child = spawn(line, { shell: true });
+		child.stdout.on("data", (data) => console.log(data.toString()));
+		child.stderr.on("data", (data) => console.log(data.toString()));
 	});
 } else {
 	rl.setPrompt(">>> ");
