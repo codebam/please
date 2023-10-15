@@ -7,6 +7,8 @@ when you give it the appropriate environment variables by putting them in
 
 ![terminal showing creating a file using please](https://pastebin.seanbehan.ca/xbPSLDL6Vr.png)
 
+![terminal showing creating a new git repo using please](https://pastebin.seanbehan.ca/75Qf5CmjHV.png)
+
 ```
 _CLOUDFLARE_API_TOKEN=
 export _CLOUDFLARE_API_TOKEN
