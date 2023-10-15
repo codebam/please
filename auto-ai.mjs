@@ -49,7 +49,7 @@ const find_commands = (input) =>
 				.replace(/^ /, "")
 		);
 
-if (process.argv[1]) {
+if (process.argv[2]) {
 	const line = process.argv.slice(2).join(" ");
 	console.log(line);
 	const response = await llama2(line);
