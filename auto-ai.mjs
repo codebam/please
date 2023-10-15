@@ -1,14 +1,8 @@
 #!/home/codebam/.nvm/versions/node/v20.8.0/bin/node
-import readline from "readline";
-import { spawn } from "child_process";
+import { spawnSync } from "child_process";
 
 const API_TOKEN = process.env._CLOUDFLARE_API_TOKEN;
 const ACCOUNT_ID = process.env._CLOUDFLARE_ACCOUNT_ID;
-
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout,
-});
 
 let system = [];
 
@@ -54,16 +48,10 @@ if (process.argv[2]) {
 	console.log(line);
 	const response = await llama2(line);
 	console.log(response);
-	find_commands(response).map(async (line) => {
+	find_commands(response).map((line) => {
 		console.log(line);
-		const child = spawn(line, { shell: true });
-		child.stdout.on("data", (data) => console.log(data.toString()));
-		child.stderr.on("data", (data) => console.log(data.toString()));
-	});
-} else {
-	rl.setPrompt(">>> ");
-	rl.prompt();
-	rl.on("line", async (line) => {
-		console.log(await llama2(line));
+		const { stdout, stderr } = spawnSync(line, { shell: true });
+		console.log(stderr.toString());
+		console.log(stdout.toString());
 	});
 }
