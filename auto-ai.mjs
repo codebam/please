@@ -45,8 +45,12 @@ if (process.argv[2]) {
 	console.log(response);
 	find_commands(response).map((line) => {
 		console.log(line);
-		const { stdout, stderr } = spawnSync(line, { shell: true });
-		console.log(stderr.toString());
-		console.log(stdout.toString());
+		try {
+			const { stdout, stderr } = spawnSync(line, { shell: true });
+			console.log(stderr.toString());
+			console.log(stdout.toString());
+		} catch (e) {
+			console.log(e);
+		}
 	});
 }
